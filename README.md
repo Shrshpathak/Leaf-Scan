@@ -2,6 +2,12 @@
 
 A deep learning-powered web application that identifies plant leaf diseases from uploaded images. Built using **TensorFlow**, **Streamlit**, and **OpenCV**, this tool helps in early detection of plant diseases, aiding smart agriculture and crop management.
 
+## 🌐 Live Demo
+
+👉 [Click here to try the Plant Disease Classifier](https://rishabh-o36-leaf-scan.streamlit.app)
+
+
+
 ![App Screenshot](plant_3.jpg)
 
 ---
