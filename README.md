@@ -46,6 +46,4 @@ A deep learning-powered web application that identifies plant leaf diseases from
 
 ---
 
-## 📂 Project Structure
-
 
