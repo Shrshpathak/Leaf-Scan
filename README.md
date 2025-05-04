@@ -2,7 +2,7 @@
 
 A deep learning-powered web application that identifies plant leaf diseases from uploaded images. Built using **TensorFlow**, **Streamlit**, and **OpenCV**, this tool helps in early detection of plant diseases, aiding smart agriculture and crop management.
 
-![App Screenshot]("C:\Users\Priya Yadav\Desktop\EXPORTS\plant_3.jpg")
+![App Screenshot](plant_3.jpg)
 
 ---
 
