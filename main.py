@@ -5,20 +5,25 @@ import numpy as np
 import tensorflow as tf
 import streamlit as st
 
-working_dir = os.path.dirname(os.path.abspath(__file__))
+# Fix incorrect '_file_' usage
+working_dir = os.path.dirname(os.path.abspath(_file_))
 model_path = os.path.join(working_dir, "spplantdisease.h5")
 
-model = tf.keras.models.load_model(model_path)
+# Fix model loading issue related to 'batch_shape'
+model = tf.keras.models.load_model(model_path, custom_objects={
+    "InputLayer": lambda **kwargs: tf.keras.layers.Input(shape=(224, 224, 3), dtype="float32")
+})
 
+# Load class indices properly
 class_indices_path = os.path.join(working_dir, "class_indices.json")
-class_indices = json.load(open(class_indices_path))
+with open(class_indices_path, "r") as f:
+    class_indices = json.load(f)
 
 def load_and_preprocess_image(image_path, target_size=(224, 224)):
     img = Image.open(image_path)
     img = img.resize(target_size)
-    img_array = np.array(img)
+    img_array = np.array(img, dtype=np.float32) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
-    img_array = img_array.astype('float32') / 255.
     return img_array
 
 def predict_image_class(model, image_path, class_indices):
@@ -29,6 +34,7 @@ def predict_image_class(model, image_path, class_indices):
     confidence = predictions[0][predicted_class_index] * 100
     return predicted_class_name, confidence
 
+# Streamlit UI setup
 st.set_page_config(page_title="Plant Disease Classifier", page_icon="🌿", layout="wide")
 
 st.markdown('<h1 class="main-header">🌿 Plant Disease Classifier</h1>', unsafe_allow_html=True)
