@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 import streamlit as st
+# model load
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(working_dir, "spplantdisease.h5")
